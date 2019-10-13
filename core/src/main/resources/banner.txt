@@ -1,0 +1,13 @@
+${AnsiColor.BLUE}      ___       ___
+     /  /\     /  /\          ___
+    /  /:/    /  /::\        /__/\
+   /  /:/    /  /:/\:\       \  \:\
+  /  /:/    /  /::\ \:\       \__\:\
+ /__/:/    /__/:/\:\_\:|      /  /::\
+ \  \:\    \  \:\ \:\/:/     /  /:/\:\
+  \  \:\    \  \:\_\::/     /  /:/__\/
+   \  \:\    \  \:\/:/     /__/:/
+    \  \:\    \__\::/      \__\/
+     \__\/        ~~
+ ${AnsiColor.BRIGHT_YELLOW}
+ ::: Spring-Boot ${spring-boot.version}     ::: LBT (version:${application.formatted-version})

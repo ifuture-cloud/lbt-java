@@ -1,0 +1,79 @@
+server:
+  port: 8091
+  use-forward-headers: true
+  undertow:
+    io-threads: 2
+    worker-threads: 36
+    buffer-size: 1024
+    directBuffers: true
+  servlet:
+    session:
+      timeout: 86400s
+  compression:
+    enabled: true
+    mime-types: application/javascript,text/css,application/json,application/xml,text/html,text/xml,text/plain
+spring:
+  mail:
+    password: password
+    default-encoding: UTF-8
+    host: smtp.163.com
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+            required: true
+          auth: true
+    username: username
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  devtools:
+    add-properties: false
+  output:
+    ansi:
+      enabled: always
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/lbt?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: lbt
+    password: HkE4Rs4Vc5h+G
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    max-active: 20
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: true
+    database: mysql
+  transaction:
+    rollback-on-commit-failure: true
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+      enabled: true
+  mvc:
+    favicon:
+      enabled: false
+  data:
+    redis:
+      repositories:
+        enabled: false
+  http:
+    multipart:
+      enabled: true
+
+logging:
+  level:
+    com.lordz: DEBUG
+  path: ${user.home}/.lbt/logs
+
+lbt:
+  oss:
+    backblaze:
+      key:
+      app-key-id:
+      app-key:
