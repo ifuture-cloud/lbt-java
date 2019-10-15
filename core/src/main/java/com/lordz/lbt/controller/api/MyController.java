@@ -1,5 +1,6 @@
 package com.lordz.lbt.controller.api;
 
+import com.lordz.lbt.auth.annotation.Auth;
 import com.lordz.lbt.model.entity.Post;
 import com.lordz.lbt.model.entity.User;
 import com.lordz.lbt.model.params.PostQuery;
@@ -29,18 +30,13 @@ public class MyController {
 
     @Autowired
     private PostService postService;
-    @Autowired
-    private UserService userService;
 
     @GetMapping("/posts")
     public Page<PostListVO> pageBy(@PageableDefault(sort = "updateTime", direction = DESC) Pageable pageable,
-                                   PostQuery postQuery) {
-        Optional<User> user = userService.getCurrentUser();
-        if (user.isPresent()) {
-            postQuery.setUserId(user.get().getId());
-            Page<Post> postPage = postService.pageBy(postQuery, pageable);
-            return postService.convertToListVo(postPage);
-        }
-        return null;
+                                   PostQuery postQuery,
+                                   @Auth User user) {
+        postQuery.setUserId(user.getId());
+        Page<Post> postPage = postService.pageBy(postQuery, pageable);
+        return postService.convertToListVo(postPage);
     }
 }
