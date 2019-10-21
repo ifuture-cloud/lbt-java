@@ -2,7 +2,10 @@ package com.lordz.lbt.controller.api;
 
 import cn.hutool.core.util.PageUtil;
 import com.lordz.lbt.auth.annotation.Auth;
+import com.lordz.lbt.cache.lock.CacheLock;
+import com.lordz.lbt.model.dto.BaseCommentDTO;
 import com.lordz.lbt.model.entity.User;
+import com.lordz.lbt.model.params.PostCommentParam;
 import com.lordz.lbt.model.support.CreateCheck;
 import com.lordz.lbt.model.vo.BaseCommentVO;
 import com.lordz.lbt.model.vo.PostWithPostCommentVO;
@@ -124,6 +127,11 @@ public class PostController {
         if (post != null && post.getCreateUser().compareTo(user.getId()) == 0) {
             postService.removeById(postId);
         }
+    }
+
+    @PostMapping("comments")
+    public BaseCommentDTO comment(@RequestBody PostCommentParam postCommentParam) {
+        return postCommentService.convertTo(postCommentService.createBy(postCommentParam));
     }
 
 }
